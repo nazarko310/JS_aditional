@@ -8,7 +8,7 @@ function GetUp(isDreamWasGood) {
                 mood = 'top'
                 resolve('Сьогодні я виспався. Прокинувся в 8:00 ')
             }
-                reject('Night recharge is very low')
+            reject('Night recharge is very low')
         }, 2568)
     })
 }
@@ -19,7 +19,7 @@ function GoRun(moodForRun) {
             if (moodForRun === 'top') {
                 resolve('Сьогодні пробіг 10 км. Тренування в 8:30')
             }
-                resolve('Без трені ніяк, але всього лиш 6 км')
+            resolve('Без трені ніяк, але всього лиш 6 км')
         }, 200)
     })
 }
@@ -30,7 +30,7 @@ function GoShower() {
             if (mood === 'top') {
                 resolve('Пішов в душ в 9:40 після бігу')
             }
-                resolve('Душ для настрою')
+            resolve('Душ для настрою')
         }, 1258)
     })
 }
@@ -41,7 +41,7 @@ function GoEat(isMealTasty) {
             if (isMealTasty) {
                 resolve('Сніданок о 10:00 був смачний')
             }
-                reject('Сніданок трошки підгорів')
+            reject('Сніданок трошки підгорів')
         }, 500)
     })
 }
@@ -52,7 +52,7 @@ function Study(ifWantStudy) {
             if (ifWantStudy) {
                 resolve('11:00-13:00, навчання')
             }
-                resolve('Навіть коли не хочеться то треба)')
+            resolve('Навіть коли не хочеться то треба)')
         }, 125)
     })
 }
@@ -64,7 +64,7 @@ function GoWork(isWorkDone) {
                 money += 500
                 resolve('14-19 Робота');
             }
-                reject('Сьогодні вихідний')
+            reject('Сьогодні вихідний')
         }, 2684);
     })
 }
@@ -76,7 +76,7 @@ function GoShop(moneyAfterShopping) {
                 moneyAfterShopping = money - 100;
                 resolve(`В 19:30 магазині купив снікерс і пепсі. У мене залишилось ${moneyAfterShopping}`);
             }
-                reject('Сьогодні без десерту')
+            reject('Сьогодні без десерту')
         }, 689)
     })
 }
@@ -84,52 +84,71 @@ function GoShop(moneyAfterShopping) {
 function LectureInOwu(dayForStudy) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            if (dayForStudy === 'monday' && dayForStudy === 'wednesday' && dayForStudy === 'friday') {
+            if (dayForStudy === 'monday' || dayForStudy === 'wednesday' || dayForStudy === 'friday') {
                 resolve('Нова лекція для вивчення о 20:00')
             }
-                reject('Сьогодні лише практика')
+            reject('Сьогодні лише практика')
         }, 387)
     })
 }
+// then
+// GetUp(true)
+//     .then(result => {
+//         console.log(result);
+//         return GoRun(mood)
+//     })
+//     .then(result => {
+//         console.log(result);
+//         console.log(`Настрій - ${mood}`);
+//         return GoShower();
+//     })
+//     .then(result => {
+//         console.log(result);
+//         return GoEat(true);
+//     })
+//     .then(result => {
+//         console.log(result);
+//         return Study();
+//     })
+//     .then(result => {
+//         console.log(result);
+//         return GoWork(true);
+//     })
+//     .then(result => {
+//         console.log(result);
+//         console.log(`${money} - гроші пілся роботи`);
+//         return GoShop(money);
+//     })
+//     .then(result => {
+//         console.log(`${result}`);
+//         return LectureInOwu('monday');
+//
+//     })
+//     .then(result => {
+//         console.log(result);
+//     })
+//     .catch(err => {
+//         console.log(err);
+//     })
+//     .finally(() => {
+//         console.log('Добраніч');
+//     })
 
-GetUp(true)
-    .then(result => {
-        console.log(result);
-        return GoRun(mood)
-    })
-    .then(result => {
-        console.log(result);
+
+async function DaySchedule() {
+    try {
+        console.log(await GetUp(true));
+        console.log(await GoRun(mood));
         console.log(`Настрій - ${mood}`);
-        return GoShower();
-    })
-    .then(result => {
-        console.log(result);
-        return GoEat(true);
-    })
-    .then(result => {
-        console.log(result);
-        return Study();
-    })
-    .then(result => {
-        console.log(result);
-        return GoWork(true);
-    })
-    .then(result => {
-        console.log(result);
-        console.log(`${money} - гроші пілся роботи`);
-        return GoShop(money);
-    })
-    .then(result => {
-        console.log(`${result}`);
-        return LectureInOwu('monday');
-
-    })
-    .then(result => {
-        console.log(result);
-    })
-    .catch(err => {
+        console.log(await GoShower());
+        console.log(await GoEat(true));
+        console.log(await Study(true));
+        console.log(await GoWork(true));
+        console.log(await GoShop(money));
+        console.log(await LectureInOwu('monday'));
+    } catch (err) {
         console.log(err);
-    })
-    .finally(() => {
-        console.log('Добраніч');
-    })
+    }
+}
+
+DaySchedule();
