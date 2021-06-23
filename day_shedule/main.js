@@ -7,9 +7,8 @@ function GetUp(isDreamWasGood) {
             if (isDreamWasGood) {
                 mood = 'top'
                 resolve('Сьогодні я виспався. Прокинувся в 8:00 ')
-            } else {
-                reject('Night recharge is very low')
             }
+                reject('Night recharge is very low')
         }, 2568)
     })
 }
@@ -19,9 +18,8 @@ function GoRun(moodForRun) {
         setTimeout(() => {
             if (moodForRun === 'top') {
                 resolve('Сьогодні пробіг 10 км. Тренування в 8:30')
-            } else {
-                resolve('Без трені ніяк, але всього лиш 6 км')
             }
+                resolve('Без трені ніяк, але всього лиш 6 км')
         }, 200)
     })
 }
@@ -31,9 +29,8 @@ function GoShower() {
         setTimeout(() => {
             if (mood === 'top') {
                 resolve('Пішов в душ в 9:40 після бігу')
-            } else {
-                resolve('Душ для настрою')
             }
+                resolve('Душ для настрою')
         }, 1258)
     })
 }
@@ -43,9 +40,8 @@ function GoEat(isMealTasty) {
         setTimeout(() => {
             if (isMealTasty) {
                 resolve('Сніданок о 10:00 був смачний')
-            } else {
-                reject('Сніданок трошки підгорів')
             }
+                reject('Сніданок трошки підгорів')
         }, 500)
     })
 }
@@ -55,9 +51,8 @@ function Study(ifWantStudy) {
         setTimeout(() => {
             if (ifWantStudy) {
                 resolve('11:00-13:00, навчання')
-            } else {
-                resolve('Навіть коли не хочеться то треба)')
             }
+                resolve('Навіть коли не хочеться то треба)')
         }, 125)
     })
 }
@@ -68,9 +63,8 @@ function GoWork(isWorkDone) {
             if (isWorkDone) {
                 money += 500
                 resolve('14-19 Робота');
-            } else {
-                reject('Сьогодні вихідний')
             }
+                reject('Сьогодні вихідний')
         }, 2684);
     })
 }
@@ -81,9 +75,8 @@ function GoShop(moneyAfterShopping) {
             if (money > 100) {
                 moneyAfterShopping = money - 100;
                 resolve(`В 19:30 магазині купив снікерс і пепсі. У мене залишилось ${moneyAfterShopping}`);
-            } else {
-                reject('Сьогодні без десерту')
             }
+                reject('Сьогодні без десерту')
         }, 689)
     })
 }
@@ -93,9 +86,8 @@ function LectureInOwu(dayForStudy) {
         setTimeout(() => {
             if (dayForStudy === 'monday' && dayForStudy === 'wednesday' && dayForStudy === 'friday') {
                 resolve('Нова лекція для вивчення о 20:00')
-            } else {
-                reject('Сьогодні лише практика')
             }
+                reject('Сьогодні лише практика')
         }, 387)
     })
 }
