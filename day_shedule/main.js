@@ -15,21 +15,25 @@ function GetUp(isDreamWasGood) {
 }
 
 function GoRun(moodForRun) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         setTimeout(() => {
             if (moodForRun === 'top') {
                 resolve('Сьогодні пробіг 10 км. Тренування в 8:30')
             } else {
-                reject('Без трені ніяк, але всього лиш 6 км')
+                resolve('Без трені ніяк, але всього лиш 6 км')
             }
         }, 200)
     })
 }
 
 function GoShower() {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         setTimeout(() => {
-            resolve('Пішов в душ в 9:40')
+            if (mood === 'top') {
+                resolve('Пішов в душ в 9:40 після бігу')
+            } else {
+                resolve('Душ для настрою')
+            }
         }, 1258)
     })
 }
@@ -46,10 +50,14 @@ function GoEat(isMealTasty) {
     })
 }
 
-function Study() {
-    return new Promise((resolve, reject) => {
+function Study(ifWantStudy) {
+    return new Promise((resolve) => {
         setTimeout(() => {
-            resolve('11:00-13:00, навчання')
+            if (ifWantStudy) {
+                resolve('11:00-13:00, навчання')
+            } else {
+                resolve('Навіть коли не хочеться то треба)')
+            }
         }, 125)
     })
 }
@@ -77,6 +85,18 @@ function GoShop(moneyAfterShopping) {
                 reject('Сьогодні без десерту')
             }
         }, 689)
+    })
+}
+
+function LectureInOwu(dayForStudy) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (dayForStudy === 'monday' && dayForStudy === 'wednesday' && dayForStudy === 'friday') {
+                resolve('Нова лекція для вивчення о 20:00')
+            } else {
+                reject('Сьогодні лише практика')
+            }
+        }, 387)
     })
 }
 
@@ -109,4 +129,15 @@ GetUp(true)
     })
     .then(result => {
         console.log(`${result}`);
+        return LectureInOwu('monday');
+
+    })
+    .then(result => {
+        console.log(result);
+    })
+    .catch(err => {
+        console.log(err);
+    })
+    .finally(() => {
+        console.log('Добраніч');
     })
